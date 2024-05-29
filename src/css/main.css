@@ -687,9 +687,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded-sm {
   border-radius: 0.125rem;
 }
-.rounded-t-xl {
+.rounded-t-xl{
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
+  
+}
+.project-img{
+  height:17em;
+  width:25em;
 }
 .border {
   border-width: 1px;

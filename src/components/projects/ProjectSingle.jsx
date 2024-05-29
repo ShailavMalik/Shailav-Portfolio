@@ -16,8 +16,9 @@ const ProjectSingle = ({ title, category, image }) => {
 				<div className="rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark">
 					<div>
 						<img
+						   
 							src={image}
-							className="rounded-t-xl border-none"
+							className="rounded-t-xl project-img border-none"
 							alt="Single Project"
 						/>
 					</div>
