@@ -1,7 +1,7 @@
 {
   "name": "shailav-portfolio",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "backend/api/server.js",
   "repository": "https://github.com/ShailavMalik/Shailav-Portfolio",
   "author": "Shailav Malik <malikshailav@gmail.com>",
   "license": "MIT",
@@ -9,12 +9,13 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "nodemailer": "^6.9.16",
-    "nodemon": "^3.1.9"
+    "nodemailer": "^6.9.16"
   },
   "type": "module",
   "scripts": {
     "start": "nodemon backend/server.js",
-    "server": "node backend/server.js"
+    "server": "node backend/server.js",
+    "vercel-build": "echo 'Ready to deploy!'",
+    "build": "yarn run build"
   }
 }

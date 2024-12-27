@@ -1,0 +1,10 @@
+{
+    "projects": {
+      "frontend": {
+        "root": "frontend",
+        "buildCommand": "yarn run build",
+        "outputDirectory": "build"
+      }
+    }
+}
+  
