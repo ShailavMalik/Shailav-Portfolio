@@ -1,16 +1,39 @@
 import { motion } from "framer-motion";
 import { FiX } from "react-icons/fi";
 import Button from "./reusable/Button";
+import { useState } from "react";
 
 const selectOptions = [
+  "Select an option",
   "Full Stack Developer",
   "Frontend Developer",
   "Graphic Designer",
 ];
 
-const handleClick = () => {};
+const HireMeModal = ({ onClose }) => {
+  const [loading, setLoading] = useState(false);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data);
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:5000/api/hire-me-form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        onClose(); // Close the modal
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
-const HireMeModal = ({ onClose, onRequest }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -25,7 +48,7 @@ const HireMeModal = ({ onClose, onRequest }) => {
         <div className="modal-wrapper flex items-center z-30">
           <div className="modal max-w-md mx-5 xl:max-w-xl lg:max-w-xl md:max-w-xl bg-secondary-light dark:bg-primary-dark max-h-screen shadow-lg flex-row rounded-lg relative">
             <div className="modal-header flex justify-between gap-10 p-5 border-b border-ternary-light dark:border-ternary-dark">
-              <h5 className=" text-primary-dark dark:text-primary-light text-xl">
+              <h5 className="text-primary-dark dark:text-primary-light text-xl">
                 What project are you looking for?
               </h5>
               <button
@@ -36,11 +59,10 @@ const HireMeModal = ({ onClose, onRequest }) => {
             </div>
             <div className="modal-body p-5 w-full h-full">
               <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                }}
-                className="max-w-xl m-4 text-left">
-                <div className="">
+                onSubmit={(e) => handleSubmit(e)}
+                className="max-w-xl m-4 text-left"
+                id="hire-me-form">
+                <div>
                   <input
                     className="w-full px-5 py-2 border dark:border-secondary-dark rounded-md text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
                     id="name"
@@ -57,7 +79,7 @@ const HireMeModal = ({ onClose, onRequest }) => {
                     id="email"
                     name="email"
                     type="email"
-                    required={true}
+                    required
                     placeholder="Email"
                     aria-label="Email"
                   />
@@ -67,8 +89,7 @@ const HireMeModal = ({ onClose, onRequest }) => {
                     className="w-full px-5 py-2 border dark:border-secondary-dark rounded-md text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
                     id="subject"
                     name="subject"
-                    type="text"
-                    required=""
+                    required
                     aria-label="Project Category">
                     {selectOptions.map((option) => (
                       <option className="text-normal sm:text-md" key={option}>
@@ -90,21 +111,16 @@ const HireMeModal = ({ onClose, onRequest }) => {
                 </div>
 
                 <div className="mt-6 pb-4 sm:pb-1">
-                  <span
-                    onClick={onClose}
-                    type="submit"
-                    className="px-4
-											sm:px-6
-											py-2
-											sm:py-2.5
-											text-white
-											bg-indigo-500
-											hover:bg-indigo-600
-											rounded-md
-											focus:ring-1 focus:ring-indigo-900 duration-500"
-                    aria-label="Submit Request">
-                    <Button title="Send Request" onClick={handleClick} />
-                  </span>
+                  <button
+                    disabled={loading}
+                    className="px-4 sm:px-6 py-2 sm:py-2.5 text-white bg-indigo-500 {loading?(null):(hover:bg-indigo-600 )}rounded-md focus:ring-1  focus:ring-indigo-900 duration-500"
+                    aria-label="Submit Request ">
+                    {loading ? (
+                      <div className="spinner-border animate-spin inline-block w-4 h-4 border-2 rounded-full border-t-transparent"></div>
+                    ) : (
+                      "Submit Request"
+                    )}
+                  </button>
                 </div>
               </form>
             </div>
@@ -112,11 +128,7 @@ const HireMeModal = ({ onClose, onRequest }) => {
               <span
                 onClick={onClose}
                 type="button"
-                className="px-4
-									sm:px-6
-									py-2 bg-gray-600 text-primary-light hover:bg-ternary-dark dark:bg-gray-200 dark:text-secondary-dark dark:hover:bg-primary-light
-									rounded-md
-									focus:ring-1 focus:ring-indigo-900 duration-500"
+                className="px-4 sm:px-6 py-2 bg-gray-600 text-primary-light hover:bg-ternary-dark dark:bg-gray-200 dark:text-secondary-dark dark:hover:bg-primary-light rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
                 aria-label="Close Modal">
                 <Button title="Close" />
               </span>
