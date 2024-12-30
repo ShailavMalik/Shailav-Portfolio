@@ -2,7 +2,6 @@ import {
   FiGithub,
   FiTwitter,
   FiLinkedin,
-  FiGlobe,
   FiYoutube,
   FiInstagram,
 } from "react-icons/fi";
@@ -29,7 +28,6 @@ const socialLinks = [
     icon: <FiTwitter />,
     url: "https://x.com/ShailavMalik",
   },
-  ,
   {
     id: 5,
     icon: <FiYoutube />,
