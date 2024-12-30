@@ -2,8 +2,8 @@
 import express from "express";
 import nodemailer from "nodemailer";
 import bodyparser from "body-parser";
-import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 
 // Initialize express app
 const app = express();
@@ -86,11 +86,17 @@ app.post("/api/hire-me-form", async (req, res) => {
     res.status(500).send("Error sending email");
   }
 });
-
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-});
+//
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running...");
+  });
+}
 
 // Start the server on the specified port or default to 5000
 const PORT = process.env.PORT || 5000;
