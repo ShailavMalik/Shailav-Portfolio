@@ -16,9 +16,9 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
 // Enable CORS for requests from http://localhost:3000
-app.use(
-  cors({ origin: "http://localhost:3000", methods: "POST", credentials: true })
-);
+// app.use(
+//   cors({ origin: "http://localhost:3000", methods: "POST", credentials: true })
+// );
 
 // POST route to handle form submissions
 app.post("/api/hire-me-form", async (req, res) => {

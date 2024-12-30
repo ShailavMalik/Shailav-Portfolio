@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { FiX } from "react-icons/fi";
 import Button from "./reusable/Button";
 import { useState } from "react";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const selectOptions = [
   "Select an option",
@@ -19,7 +22,7 @@ const HireMeModal = ({ onClose }) => {
     console.log(data);
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/hire-me-form", {
+      const response = await fetch(`${process.env.API_URL}/hire-me-form`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
