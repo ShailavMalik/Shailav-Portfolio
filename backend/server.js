@@ -94,16 +94,11 @@ app.post("/api/hire-me-form", async (req, res) => {
   }
 });
 
-if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/build")));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
   });
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running....");
-  });
-}
+
 
 // Start the server on the specified port or default to 5000
 const PORT = process.env.PORT || 5000;
