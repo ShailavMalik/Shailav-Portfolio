@@ -16,7 +16,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
 // use only in development mode
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV == "development") {
   // Enable CORS for requests from http://localhost:3000
   app.use(
     cors({
