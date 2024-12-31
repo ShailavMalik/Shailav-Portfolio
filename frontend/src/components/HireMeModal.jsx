@@ -3,6 +3,10 @@ import { FiX } from "react-icons/fi";
 import Button from "./reusable/Button";
 import { useState } from "react";
 
+let apiUrl = "http://localhost:5000/api/hire-me-form";
+if (process.env.NODE_ENV === "production") {
+  apiUrl = "https://shailav-portfolio.vercel.app/api/hire-me-form";
+}
 
 const selectOptions = [
   "Select an option",
@@ -17,10 +21,9 @@ const HireMeModal = ({ onClose }) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    console.log(data);
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/hire-me-form`, {
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

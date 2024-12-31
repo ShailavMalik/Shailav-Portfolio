@@ -2,8 +2,8 @@
 import express from "express";
 import nodemailer from "nodemailer";
 import bodyparser from "body-parser";
+import cors from "cors";
 import dotenv from "dotenv";
-import path from "path";
 
 // Initialize express app
 const app = express();
@@ -15,16 +15,23 @@ dotenv.config();
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
-// Enable CORS for requests from http://localhost:3000
-// app.use(
-//   cors({ origin: "http://localhost:3000", methods: "POST", credentials: true })
-// );
+// use only in development mode
+if (process.env.NODE_ENV === "development") {
+  // Enable CORS for requests from http://localhost:3000
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      methods: "POST",
+      credentials: true,
+    })
+  );
+}
 
 // POST route to handle form submissions
 app.post("/api/hire-me-form", async (req, res) => {
   // Extract data from the request body
   const { name, email, subject, message } = req.body;
-
+                                                                                                                                                                                                    
   // Create a transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -86,7 +93,7 @@ app.post("/api/hire-me-form", async (req, res) => {
     res.status(500).send("Error sending email");
   }
 });
-//
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/build")));
   app.get("*", (req, res) => {
@@ -94,7 +101,7 @@ if (process.env.NODE_ENV === "production") {
   });
 } else {
   app.get("/", (req, res) => {
-    res.send("API is running...");
+    res.send("API is running....");
   });
 }
 
