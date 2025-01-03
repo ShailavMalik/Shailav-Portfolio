@@ -4,6 +4,7 @@ import nodemailer from "nodemailer";
 import bodyparser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 
 // Initialize express app
 const app = express();
@@ -94,10 +95,17 @@ app.post("/api/hire-me-form", async (req, res) => {
   }
 });
 
+  // Serve static files from the React frontend app
   app.use(express.static(path.join(__dirname, "../frontend/build")));
-  app.get("*", (req, res) => {
+  app.get("*", (_req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
   });
+
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.status(200).send("Server is up and running!");
+});
+
 
 
 // Start the server on the specified port or default to 5000
