@@ -6,57 +6,108 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 
-console.log("Starting server...");
-
+console.log("Hello from backend");
 // Initialize express app
 const app = express();
-console.log("Express app initialized");
 
 // Load environment variables from .env file
 dotenv.config();
-console.log("Environment variables loaded");
 
 // Middleware to parse URL-encoded data and JSON data
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
-console.log("Middleware configured");
 
-// Enable CORS for requests from http://localhost:3000
-app.use(cors({
-  origin: "http://localhost:3000",
-  methods: "POST",
-  credentials: true,
-}));
-console.log("CORS configured");
+// use only in development mode
+// if (process.env.NODE_ENV == "development") {
+//   // Enable CORS for requests from http://localhost:3000
+//   app.use(
+//     cors({
+//       origin: "http://localhost:3000",
+//       methods: "POST",
+//       credentials: true,
+//     })
+//   );
+// }
 
 // POST route to handle form submissions
 app.post("/api/hire-me-form", async (req, res) => {
+  // Extract data from the request body
   const { name, email, subject, message } = req.body;
-  // Your email sending logic here
+                                                                                                                                                                                                    
+  // Create a transporter object using the default SMTP transport
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.GMAIL_USER, // Your email ID from environment variable
+      pass: process.env.GMAIL_PASS, // Your email password from environment variable
+    },
+  });
+
+  // Email options for sending to the portfolio owner
+  const mailOptions1 = {
+    from: process.env.GMAIL_USER, // Sender address
+    to: "malikshailav@gmail.com", // Recipient email ID
+    subject: `Hiring for ${subject}`, // Subject line
+    text: `Message from portfolio 'Hire-me'
+
+          Below are the details:
+          Name: ${name}
+          Email: ${email}
+
+          Here is the message:
+          ${message}`,
+  };
+
+  // Email options for sending to the user or client
+  const mailOptions2 = {
+    from: "shailavmalik684@gmail.com",
+    to: email, // Recepient email ID
+    subject: `Thank you for contacting for ${subject}`,
+    text: `Thanks for contacting me (Shailav Malik) for ${subject} throught my portfolio https://shailav-portfolio.vercel.app/.
+
+     I will get back to you soon.
+     
+     You can also contact me on my mobile number: +91-9897774657 or email me at 'malikshailav@gmail.com' for any queries or urgent requirements.
+     
+      Regards,
+      Shailav Malik
+
+
+      Find me on socials:
+      LinkedIn: https://www.linkedin.com/in/shailavmalik/
+      Github: https://github.com/ShailavMalik/
+      Twitter: https://x.com/ShailavMalik
+      Instagram: https://www.instagram.com/shailavmalik1/
+
+
+     `,
+  };
+
   try {
     // Send email using the transporter
     await transporter.sendMail(mailOptions1);
     await transporter.sendMail(mailOptions2);
+    // Send success response
     res.status(200).send("Email sent successfully");
   } catch (error) {
+    // Log error and send error response
     console.error("error in backend:" + error);
     res.status(500).send("Error sending email");
   }
 });
-console.log("API routes configured");
 
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-app.get("*", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-});
-console.log("Static files configured");
+  // Serve static files from the React frontend app
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+  app.get("*", (_req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+  });
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
   res.status(200).send("Server is up and running!");
 });
-console.log("Health check endpoint configured");
+
+
 
 // Start the server on the specified port or default to 5000
 const PORT = process.env.PORT || 5000;
