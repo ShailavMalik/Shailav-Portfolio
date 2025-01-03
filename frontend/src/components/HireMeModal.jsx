@@ -3,10 +3,7 @@ import { FiX } from "react-icons/fi";
 import Button from "./reusable/Button";
 import { useState } from "react";
 
-let apiUrl = "http://localhost:5000/api/hire-me-form";
-if (process.env.NODE_ENV === "production") {
-  apiUrl = "https://shailav-portfolio.vercel.app/api/hire-me-form";
-}
+const apiUrl = "https://shailav-portfolio.vercel.app/api/hire-me-form";
 
 const selectOptions = [
   "Select an option",
