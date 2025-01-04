@@ -7,6 +7,7 @@ import AppHeader from "./components/shared/AppHeader.jsx";
 import "./css/App.css";
 import UseScrollToTop from "./hooks/useScrollToTop.jsx";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const About = lazy(() => import("./pages/AboutMe.jsx"));
 const Contact = lazy(() => import("./pages/Contact.jsx"));
@@ -32,6 +33,7 @@ function App() {
         </Router>
         <UseScrollToTop />
         <Analytics />
+        <SpeedInsights />
       </div>
     </AnimatePresence>
   );
