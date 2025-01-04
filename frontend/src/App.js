@@ -6,6 +6,7 @@ import AppFooter from "./components/shared/AppFooter.jsx";
 import AppHeader from "./components/shared/AppHeader.jsx";
 import "./css/App.css";
 import UseScrollToTop from "./hooks/useScrollToTop.jsx";
+import { Analytics } from "@vercel/analytics/react";
 
 const About = lazy(() => import("./pages/AboutMe.jsx"));
 const Contact = lazy(() => import("./pages/Contact.jsx"));
@@ -30,6 +31,7 @@ function App() {
           <AppFooter />
         </Router>
         <UseScrollToTop />
+        <Analytics />
       </div>
     </AnimatePresence>
   );
