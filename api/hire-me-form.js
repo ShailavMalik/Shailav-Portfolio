@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).send('Method not allowed');
+  if (req.method !== "POST") {
+    return res.status(405).send("Method not allowed");
   }
 
   const { name, email, subject, message } = req.body;
@@ -23,9 +23,14 @@ export default async function handler(req, res) {
     to: "malikshailav@gmail.com",
     subject: `Hiring for ${subject}`,
     text: `Message from portfolio 'Hire-me'
+
+
           Below are the details:
+
           Name: ${name}
           Email: ${email}
+
+          
           Here is the message:
           ${message}`,
   };
@@ -34,7 +39,23 @@ export default async function handler(req, res) {
     from: "shailavmalik684@gmail.com",
     to: email,
     subject: `Thank you for contacting for ${subject}`,
-    text: `Thanks for contacting me (Shailav Malik)...` // Rest of your email text
+    text: `Thanks for contacting me (Shailav Malik) for ${subject} throught my portfolio https://shailav-portfolio.vercel.app/.
+     I will get back to you soon.
+     
+     You can also contact me on my mobile number: +91-9897774657 or email me at 'malikshailav@gmail.com' for any queries or urgent requirements.
+     
+     
+      Regards,
+      Shailav Malik
+
+
+
+      Find me on socials:
+      LinkedIn: https://www.linkedin.com/in/shailavmalik/
+      Github: https://github.com/ShailavMalik/
+      Twitter: https://x.com/ShailavMalik
+      Instagram: https://www.instagram.com/shailavmalik1/
+     `,
   };
 
   try {
