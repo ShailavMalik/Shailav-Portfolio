@@ -21,8 +21,8 @@ export default async function handler(req, res) {
   const mailOptions1 = {
     from: process.env.GMAIL_USER,
     to: "malikshailav@gmail.com",
-    subject: `Hiring for ${subject}`,
-    text: `Message from portfolio 'Hire-me'
+    subject: `Contact form submission from ${name}`,
+    text: `Message from portfolio 'Contact-Form'
 
 
           Below are the details:
@@ -38,15 +38,15 @@ export default async function handler(req, res) {
   const mailOptions2 = {
     from: "shailavmalik684@gmail.com",
     to: email,
-    subject: `Thank you for contacting for ${subject}`,
+    subject: `Thank you for contacting me`,
     text: `Thanks for contacting me (Shailav Malik) for ${subject} throught my portfolio https://shailav-portfolio.vercel.app/.
     I will get back to you soon.
      
-    You can also contact me on my mobile number: +91-9897774657 or email me at 'malikshailav@gmail.com' for any queries or urgent requirements.
+    You can also whatsapp me on +91-9897774657 or email me at 'malikshailav@gmail.com' for any queries or urgent requirements.
      
      
-    Regards,
-    Shailav Malik
+      Regards,
+      Shailav Malik
 
 
 
