@@ -40,22 +40,28 @@ export default async function handler(req, res) {
     to: email,
     subject: `Thank you for contacting for ${subject}`,
     text: `Thanks for contacting me (Shailav Malik) for ${subject} throught my portfolio https://shailav-portfolio.vercel.app/.
-    I will get back to you soon.
+I will get back to you soon.
+Check out my resume attached with this email.
      
-    You can also contact me on my mobile number: +91-9897774657 or email me at 'malikshailav@gmail.com' for any queries or urgent requirements.
+You can also contact me on my mobile number: +91-9897774657 or email me at 'malikshailav@gmail.com' for any queries or urgent requirements.
      
-     
-    Regards,
-    Shailav Malik
+
+Regards,
+Shailav Malik
 
 
-
-      Find me on socials:
-      LinkedIn: https://www.linkedin.com/in/shailavmalik/
-      Github: https://github.com/ShailavMalik/
-      Twitter: https://x.com/ShailavMalik
-      Instagram: https://www.instagram.com/shailavmalik1/
+Find me on socials:
+LinkedIn: https://www.linkedin.com/in/shailavmalik/
+Github: https://github.com/ShailavMalik/
+Twitter: https://x.com/ShailavMalik
+Instagram: https://www.instagram.com/shailavmalik1/
      `,
+    attachments: [
+      {
+        filename: "Shailav CV.pdf", // Replace with your file name
+        path: "https://github.com/ShailavMalik/Shailav-Portfolio/blob/main/frontend/public/files/Shailav%20CV.pdf", // Replace with your file path
+      },
+    ],
   };
 
   try {
