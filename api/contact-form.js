@@ -41,6 +41,9 @@ export default async function handler(req, res) {
     subject: `Thank you for contacting me`,
     text: `Thanks for contacting me (Shailav Malik) for ${subject} throught my portfolio https://shailav-portfolio.vercel.app/.
     I will get back to you soon.
+
+    Check out my resume attached with this email. You can also download it from here.
+    
      
     You can also whatsapp me on +91-9897774657 or email me at 'malikshailav@gmail.com' for any queries or urgent requirements.
      
@@ -56,6 +59,12 @@ export default async function handler(req, res) {
       Twitter: https://x.com/ShailavMalik
       Instagram: https://www.instagram.com/shailavmalik1/
      `,
+     attachments: [
+        {
+            filename: 'Shailav CV.pdf', // Replace with your file name
+            path: 'https://github.com/ShailavMalik/Shailav-Portfolio/blob/main/frontend/public/files/Shailav%20CV.pdf', // Replace with your file path
+        },
+    ],
   };
 
   try {
