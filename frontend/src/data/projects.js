@@ -8,6 +8,7 @@ import Image6 from "../images/project6.png";
 import Image7 from "../images/project7.png";
 import Image8 from "../images/project8.png";
 import Image9 from "../images/project9.png";
+import Image10 from "../images/project10.png";
 
 export const projectsData = [
   {
@@ -28,6 +29,14 @@ export const projectsData = [
   },
   {
     id: 3,
+    title: "Calculator",
+    category: "Frontend Application",
+    img: Image10,
+    codeUrl: "https://github.com/ShailavMalik/Calculator",
+    deployUrl:"https://calculator-shailav.vercel.app/"
+  },
+  {
+    id: 4,
     title: "Dice-Roll",
     category: "Frontend Application",
     img: Image3,
@@ -35,7 +44,7 @@ export const projectsData = [
     deployUrl:"https://dice-roll-ashen.vercel.app/"
   },
   {
-    id: 4,
+    id: 5,
     title: "Drum-kit",
     category: "Frontend Application",
     img: Image4,
@@ -43,15 +52,15 @@ export const projectsData = [
     deployUrl: "https://drum-kit-fawn-omega.vercel.app/",
   },
   {
-    id: 5,
+    id: 6,
     title: "Flipkart UI Clone",
     category: "Frontend Application",
     img: Image5,
     codeUrl:"https://github.com/ShailavMalik/Flipkart_Clone",
-    deployUrl: "https://shailavmalik.github.io/Flipkart_Clone/",
+    deployUrl: "#",
   },
   {
-    id: 6,
+    id: 7,
     title: "Blog-Website",
     category: "Frontend Application",
     img: Image6,
@@ -59,24 +68,24 @@ export const projectsData = [
     deployUrl: "https://shailavmalik.github.io/Blog-Website/",
   },
   {
-    id: 7,
+    id: 8,
     title: "Microsoft Homepage Clone",
     category: "Frontend Application",
     img: Image7,
     codeUrl: "https://github.com/ShailavMalik/Microsoft_frontend-clone",
-    deployUrl: "https://shailavmalik.github.io/Microsoft_frontend-clone/",
+    deployUrl: "#",
   },
   {
-    id: 8,
+    id: 9,
     title: "Facebook Login Clone",
     category: "Frontend Application",
     img: Image8,
     codeUrl:"https://github.com/ShailavMalik/facebook-login-page",
-    deployUrl:"https://shailavmalik.github.io/facebook-login-page/"
+    deployUrl:"#"
 
   },
   {
-    id: 9,
+    id: 10,
     title: "Personal Site",
     category: "Frontend Application",
     img: Image9,
