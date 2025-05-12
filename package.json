@@ -1,6 +1,6 @@
 {
-  "name": "shailav-portfolio",
-  "version": "1.0.0",
+  "name": "shailav-malik-portfolio",
+  "version": "1.0.1",
   "main": "backend/api/server.js",
   "repository": "https://github.com/ShailavMalik/Shailav-Portfolio",
   "author": "Shailav Malik <malikshailav@gmail.com>",
