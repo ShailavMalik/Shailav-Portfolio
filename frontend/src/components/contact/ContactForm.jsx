@@ -2,7 +2,7 @@ import FormInput from "../reusable/FormInput";
 import { useState } from "react";
 
 const ContactForm = () => {
-  const apiUrl = "https://shailav-portfolio.vercel.app/api/contact-form";
+  const apiUrl = "/api/contact-form";
   const [loading, setLoading] = useState(false);
   async function handleSubmit(e) {
     e.preventDefault();
